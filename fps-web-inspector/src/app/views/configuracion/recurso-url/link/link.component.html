@@ -1,0 +1,28 @@
+<div>
+    <br>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex.xs="100%">
+            <p class="titulo">Envía esta URL al asegurado</p>
+        </div>
+    </div>
+    <br>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex.xs="100%" fxFlex.sm="94%" fxFlex.md="70%" fxFlex.lg="94%" fxFlex.xl="70%">
+            <mat-form-field class="example-full-width">
+                <span matPrefix> <mat-icon>insert_link</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <input matInput [value]="outputPath" #link >
+              </mat-form-field>
+            <!-- <a target="_blank" [href]="outputPath" #link>{{outputPath}}</a> -->
+        </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex.xs="100%">
+           <p class="acciones">&nbsp; &nbsp;&nbsp; Acciones</p>
+            <div>
+                <button mat-raised-button color="primary" (click)="copyInputMessage(link)" value="click to copy" >
+                   <mat-icon> content_copy</mat-icon> Copiar link
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

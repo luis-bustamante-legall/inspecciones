@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../../../../assets/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'OpenSansLight';
+    src: url(../../../../assets/fonts/OpenSans-Light.ttf);
+}
+
+.matCard {
+    font-family: OpenSans;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 36px;
+    font-weight: bold;
+    padding: 30px 0px 30px;
+    color: #fff;
+    background: #8A2387;
+    background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);
+    background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+}
+
+.fondo {
+    height: 98%;
+    background: #FFB75E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ED8F03, #FFB75E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mensaje2 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    font-family: OpenSans;
+}
+
+.mensaje3 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #273746 ;
+}
+
+.contenedor-pie {
+    width: 100%;
+    background: #E67E22;
+    position: absolute;
+    bottom: 0 ;
+    bottom: -1px;
+    height: 40px;
+    }

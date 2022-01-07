@@ -1,0 +1,220 @@
+@font-face{
+     font-family: 'OpenSans';
+     src: url(../../../assets/fonts/OpenSans-Regular.ttf);
+}
+.titulo {
+    font-family: OpenSans;
+    background: #F0F3F4; 
+    padding:10px 20px 10px; 
+    color: #3162A0; 
+    font-size: 16px;
+    font-weight: bold;
+}
+.container {
+    margin: 15px 18px 10px 18px;
+    font-family: OpenSans;
+}
+
+.withInputs {
+    width: 100%;
+}
+
+.table-container {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+    width: 100%;
+}
+
+.badge-pendiente {
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 1px 8px 1px 8px;
+    border-radius: 20px;
+    font-family: OpenSans;
+}
+
+.badge-espera {
+    background-color: #FFC106;
+    color: #283747;
+    font-size: 12px;
+    padding: 1px 8px 1px 8px;
+    border-radius: 20px;
+    font-family: OpenSans;
+}
+
+.badge-terminado {
+    background-color: #16A3B8;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 1px 8px 1px 8px;
+    border-radius: 20px;
+    font-family: OpenSans;
+}
+
+.mat-header-cell {
+    /* background-color: #3162A0; */
+    background: #0B75C8;
+    color: #ffffff;
+}
+
+.cabecero {
+    /* background-color: #3162A0; */
+    background: #0B75C8;
+    color: #ffffff;
+    margin-bottom: 1px;
+}
+
+.boton {
+    background-color: #4CAF50;
+    color: #ffffff;
+    margin: 6px 20px 6px;
+    min-height: 23px !important;
+    min-width: 9px !important;
+    font-size: 10px !important;
+    line-height: 0px;
+}
+
+.boton-filtro {
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: OpenSans;
+}
+
+.boton-limpiar {
+    background-color: #E74040 !important;
+    color: #ffffff !important;
+    font-weight: 400;
+    font-family: OpenSans;
+}
+
+.titleTable {
+    text-indent: 50px;
+}
+
+.tooltip {
+    padding-top: 0px;
+    font-size: 13px;
+    padding-bottom: 0px;
+    margin-top: -5px !important;
+}
+
+.tooltip-2 {
+    margin-top: 6px !important;
+}
+
+.w-8 {
+    max-width: 7%;
+    padding-right: 1%;
+    font-family: OpenSans;
+    font-size: 12px;
+}
+
+.w-8-small {
+    padding-right: 1%;
+    font-family: OpenSans;
+    font-size: 12px;
+}
+
+.w-8Content {
+    max-width: 7%;
+    padding-right: 1%;
+    font-family: OpenSans;
+    font-size: 13px;
+}
+
+.w-30 {
+    width: 20%;
+    padding-right:1%;
+    font-family: OpenSans;
+    font-size: 13px;
+}
+
+.w-30Content {
+    width: 20%;
+    padding-right:1%;
+    font-family: OpenSans;
+    font-size: 13px;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+@media (max-width: 700px) {
+    .mat-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0;
+        display: table;
+        border-collapse: collapse;
+        margin: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .mat-row, .mat-header-row {
+        display: table-row;
+    }
+}
+
+@media (max-width: 700px) {
+    .mat-cell, .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 1px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+}
+
+.fuente {
+    font-family: OpenSans;
+    font-size: 13px;
+}
+
+.fuenteFormulario {
+    font-family: OpenSans;
+}
+
+.badge-caducado {
+    background-color: #DD3444;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 1px 8px 1px 8px;
+    border-radius: 20px;
+    font-family: OpenSans;
+}
+
+.mat-badge-content {
+    background: #FFC106;
+    color: black;;
+}
+
+.habilitar {
+    color: #32C5BC;
+}
+
+.iniciar {
+    color: #047BFE; 
+}
+
+.reprogramar{
+    color: #A569BD;
+}
+
+.share{
+    color: #4092E9;
+}
+
+.pdf{
+    color: #F44335;
+}

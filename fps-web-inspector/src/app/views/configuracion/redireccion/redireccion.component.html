@@ -1,0 +1,20 @@
+
+<mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 6px;" class="matCard fondo">
+    <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+        <mat-icon>mark_email_unread</mat-icon>
+        Mensaje de Legall
+    </mat-card-subtitle>
+    <mat-card-content>
+        <div *ngIf="link != null">
+            <a class="mensaje3" [href]="link"><img [src]="icono" width="200px" height="50px"></a>
+            <div class="contenedor-pie" *ngIf="timeLeft != 0">
+                <h4 class="mensaje2" >{{mensaje}} {{timeLeft}}</h4>
+            </div>
+        </div>
+        <div *ngIf="link == null">
+            <h4 class="mensaje3" >{{mensaje}}</h4>
+            <img src="../../../../assets/images/default.png">
+        </div>
+    </mat-card-content>
+    
+</mat-card>

@@ -1,0 +1,208 @@
+<div style="background-color: #ffffff;">
+    <div class="container">
+        <mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 6px;" class="example-card">
+            <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+                <mat-icon style="font-size: 20px; margin-top: 0px; height: 10px;">people</mat-icon>
+                Datos Generales
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutAlign="space-around">
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Placa" readonly="true" [(ngModel)]="plate">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Asegurado" readonly="true" [(ngModel)]="asegurado">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Contratante" readonly="true" [(ngModel)]="contratante">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Persona contacto de inspeccion" readonly="true"
+                                [(ngModel)]="contacto">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <mat-select placeholder="Marca" [(ngModel)]="selectMarca"
+                                (selectionChange)="filtrarModelo($event.value)">
+                                <mat-option *ngFor="let ma of marca$" [value]="ma.idMarca">
+                                    {{ma.marca}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <mat-select placeholder="Modelo" [(ngModel)]="selectModelo">
+                                <mat-option *ngFor="let mo of modelo$" [value]="mo.idModelo">
+                                    {{mo.modelo}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Direccion" (blur)="updateCollectionInspection()"
+                                [(ngModel)]="direccion">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="22%" fxFlex.lg="22%" fxFlex.xl="22%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Correo" (blur)="updateCollectionInspection()"
+                                [(ngModel)]="correo">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start">
+                    &nbsp; &nbsp; <button mat-raised-button color="warn" class="boton-back" routerLink="/inspeccion"><mat-icon class="icono-back">undo</mat-icon> Regresar</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div style="margin-bottom: 6px;"></div>
+        <div fxLayout="row wrap" fxLayoutAlign="start">
+            <div fxFlex.xs="94%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.lg="100%" fxFlex.xl="100%">
+                <mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 6px;"
+                    class="example-card">
+                    <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+                        <mat-icon style="font-size: 20px; margin-top: 0px; height: 10px;">movie</mat-icon>
+                        Videos
+                    </mat-card-subtitle>
+                    <mat-card-content *ngFor="let item of dataVideos">
+                        <div *ngIf="item.status == 'approved' || item.status == 'uploaded'">
+                            <div fxLayout="row wrap" fxLayoutAlign="start">
+                                <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="90%" fxFlex.lg="50%" fxFlex.xl="50%">
+                                    <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="40%" fxFlex.lg="50%" fxFlex.xl="50%"
+                                        *ngIf="item.status == 'approved'">
+                                        &nbsp; &nbsp;<button mat-raised-button matBadge="OK" class="boton-activo">ok<mat-icon>
+                                                thumb_up</mat-icon>
+                                        </button> &nbsp;
+                                        <button mat-raised-button (click)="rechazarVideo(item.id)">Rechazar
+                                            <mat-icon>
+                                                thumb_down</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="item.status == 'uploaded'">
+                                        &nbsp; &nbsp; <button mat-raised-button (click)="aprobarVideo(item.id)">OK <mat-icon>
+                                                thumb_up</mat-icon>
+                                        </button> &nbsp;
+                                        <button mat-raised-button (click)="rechazarVideo(item.id)">Rechazar
+                                            <mat-icon>
+                                                thumb_down</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div fxLayout="row wrap" fxLayoutAlign="start">
+                                &nbsp; &nbsp; <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="40%" fxFlex.lg="50%" fxFlex.xl="50%">
+                                    <!-- <mat-video  width="400px" height="200px" [src]="item.resource_url"></mat-video> -->
+                                    <video autoplay playsinline controls width="auto" height="500px">
+                                        <source [src]="item.resource_url" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="item.status == 'rejected' || item.status == 'empty'">
+                            <div fxLayout="row wrap" fxLayoutAlign="start">
+                                &nbsp; &nbsp; <h3><span>
+                                        <mat-icon>videocam_off</mat-icon>
+                                    </span> No se han cargado videos...</h3>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 6px;"></div>
+        <mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 6px;" class="example-card">
+            <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+                <mat-icon style="font-size: 18px; margin-top: 0px; height: 10px;">camera_alt</mat-icon>
+                Fotos
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div fxLayout="row wrap">
+                    <div>
+                        <div fxLayout="column" fxFlex.xs="94%">
+                            <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+                                <div fxFlex.xs="94%" fxFlex.sm="45%" fxFlex.md="31%" fxFlex.lg="31%" fxFlex.xl="31%"
+                                    *ngFor="let item of dataPhotos">
+                                    <br>
+                                    <mat-card class="card-image">
+                                        <mat-card-header>
+                                            <mat-card-title class="titulo-imagen">{{item.description}}
+                                            </mat-card-title>
+                                        </mat-card-header>
+                                        <div *ngIf="item.status == 'uploaded' || item.status == 'approved'">
+                                            <br>
+                                            <a (click)="openImage(item.resource_url)" rel="">
+                                                <img mat-card-image [src]="item.resource_url" alt="" height="300px">
+                                            </a>
+                                            <div *ngIf="item.status == 'approved'">
+                                                <button mat-raised-button matBadge="OK" class="boton-activo">ok
+                                                    <mat-icon>
+                                                        thumb_up</mat-icon>
+                                                </button> &nbsp;
+                                                <button mat-raised-button (click)="rechazarFoto(item.id)">Rechazar
+                                                    <mat-icon>
+                                                        thumb_down</mat-icon>
+                                                </button>
+                                            </div>
+                                            <div *ngIf="item.status == 'uploaded'">
+                                                <button mat-raised-button (click)="aprobarFoto(item.id)">OK <mat-icon>
+                                                        thumb_up</mat-icon>
+                                                </button> &nbsp;
+                                                <button mat-raised-button (click)="rechazarFoto(item.id)">Rechazar
+                                                    <mat-icon>
+                                                        thumb_down</mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="item.status == 'rejected' || item.status == 'empty'">
+                                            <img mat-card-image src="assets/no-disponible.png" alt="" height="300px">
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div style="margin-bottom: 7px;"></div>
+        <mat-card class="example-card">
+            <div *ngIf="getStatus() == 'complete'">
+                <mat-card-content >
+                    <button mat-raised-button class="btn-terminar" (click)="finalizarInspeccion()">&nbsp;<mat-icon>
+                        fact_check</mat-icon> Finalizar inspección </button>
+                </mat-card-content>
+            </div>
+          
+            <div *ngIf="getStatus() != 'complete'" >
+                <mat-card-content >
+                    <span matTooltip="Esperando a que el asegurado finalice" matTooltipClass="tooltip" >
+                        <button mat-raised-button class="btn-terminar"disabled= 'true' (click)="finalizarInspeccion()">&nbsp;<mat-icon>
+                            schedule</mat-icon> Esperando ... </button>
+                    </span>
+                </mat-card-content>
+            </div>
+            <mat-card-actions>
+
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+<div class="inferior">
+    <app-chat [inspectionsId]="inspectionsId" [estado]=false></app-chat>
+</div>

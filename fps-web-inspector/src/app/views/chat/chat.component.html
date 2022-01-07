@@ -1,0 +1,24 @@
+<input type="checkbox" id="click">
+<label for="click">
+    <fa-icon class="fab" [icon]="faComment"></fa-icon>
+</label>
+<div class="wrapper">
+    <div class="head-text">Chat con el asegurado &nbsp; &nbsp;</div>
+    <div class="chat-box">
+        <div class="app-mensajes" id="app-mensajes">
+            <div *ngFor="let c of chats" [ngClass]="{'text-right': c.source == 'inspector'}">
+                <span [ngClass]="{'badge-asegurado': c.source != 'inspector',
+                                        'badge-inspector': c.source == 'inspector'}">
+                    <span *ngIf="c.source == 'inspector'">Inspector</span>
+                    <span *ngIf="c.source != 'inspector'">Asegurado</span>
+                </span>
+                <p [ngClass]="{'cuerpo-inspector': c.source == 'inspector',
+                                       'cuerpo-asegurado': c.source != 'inspector'}">{{c.body}}</p>
+            </div>
+        </div>
+        <mat-form-field class="inpMensaje">
+            <input [disabled]='estado' matInput name="mensaje" [(ngModel)]="mensaje" (keyup.enter)="enviarMensaje()"
+                placeholder="Enviar mensaje">
+        </mat-form-field>
+    </div>
+</div>

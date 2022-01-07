@@ -1,0 +1,186 @@
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+    <div class="container">
+        <mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 6px;" class="example-card">
+            <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+                <span>
+                    <mat-icon>person_search</mat-icon>
+                </span>
+                Filtrar Inspeccion
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutAlign="space-around">
+                    <div fxFlex.xs="90%" fxFlex.sm="45%" fxFlex.md="17%" fxFlex.lg="17%" fxFlex.xl="17%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Placa" [(ngModel)]="placa">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="90%" fxFlex.sm="45%" fxFlex.md="17%" fxFlex.lg="17%" fxFlex.xl="17%">
+                        <mat-form-field class="withInputs">
+                            <input matInput placeholder="Codigo de inspeccion" [(ngModel)]="codigoInspeccionLegall">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="90%" fxFlex.sm="45%" fxFlex.md="17%" fxFlex.lg="17%" fxFlex.xl="17%">
+                        <mat-form-field class="withInputs">
+                            <mat-select placeholder="Seleccione estado" [(ngModel)]="estadoSeleccionado">
+                                <mat-option *ngFor="let es of estado" [value]="es.value">
+                                    {{es.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="90%" fxFlex.sm="45%" fxFlex.md="17%" fxFlex.lg="17%" fxFlex.xl="17%">
+                        <mat-form-field class="withInputs">
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha inicial"
+                                [(ngModel)]="fechaDesde">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.xs="90%" fxFlex.sm="95%" fxFlex.md="17%" fxFlex.lg="17%" fxFlex.xl="17%">
+                        <mat-form-field class="withInputs">
+                            <input matInput [matDatepicker]="picker2" placeholder="Fecha final"
+                                [(ngModel)]="fechaHasta">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;"></div>
+                <div fxLayout="row wrap" fxLayoutAlign="start">
+                    <div fxLayout="column" fxLayoutAlign="center" fxFlex.xs="90%" fxFlex.sm="30%" fxFlex.md="24%" fxFlex.lg="18%" fxFlex.xl="18%">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-around">
+                            <div fxFlex.xs="20%" fxFlex.sm="40%" fxFlex.md="20%" fxFlex.lg="15%" fxFlex.xl="20%">
+                                <button mat-raised-button class="boton-filtro" (click)="filtrarLista()">Consultar</button>
+                            </div>
+                            <div fxFlex.xs="20%" fxFlex.sm="40%" fxFlex.md="20%" fxFlex.lg="15%" fxFlex.xl="20%">
+                                <button mat-raised-button color="warn" (click)="limpiarCampos()">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <br>
+        <div class="cabecero">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div style=" margin: auto; margin-top: 15px; margin-bottom: 15px ;text-align: center; font-size: 15px;">
+                    Inspecciones Programadas
+                </div>
+                <!-- <div>
+                    <button class="boton" matTooltip="Refrescar" matTooltipClass="tooltip-2" mat-button
+                        (click)="ngOnInit()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        <div class="table-responsive">
+            <mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="numeroTramite">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'w-8-small'"> Nro. Trámite Compañia </mat-header-cell>
+                    <mat-cell [ngClass]="'w-8-small'" *matCellDef="let p"> {{p.numeroTramite}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="codigoInspeccion">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'w-8-small'"> Cod. Inspección Virtual</mat-header-cell>
+                    <mat-cell [ngClass]="'w-8-small'" *matCellDef="let p"> {{p.codigoInspeccionLegall}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="placa">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'w-8'"> Placa vehículo</mat-header-cell>
+                    <mat-cell  [ngClass]="'w-8'" *matCellDef="let p"> {{p.placa}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="contactoInspeccion">
+                    <mat-header-cell [ngClass]="'w-30'" *matHeaderCellDef mat-sort-header> Datos de programación </mat-header-cell>
+                    <mat-cell [ngClass]="'w-30Content'" *matCellDef="let p"> {{p.contacto}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="asegurado">
+                    <mat-header-cell [ngClass]="'w-30'" *matHeaderCellDef mat-sort-header> Asegurado </mat-header-cell>
+                    <mat-cell [ngClass]="'w-30Content'" *matCellDef="let p">{{p.nombreApellido}}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="telefono">
+                    <mat-header-cell [ngClass]="'w-8'" *matHeaderCellDef mat-sort-header> Teléfono </mat-header-cell>
+                    <mat-cell [ngClass]="'w-8Content'" *matCellDef="let p">
+                        <span *ngIf="p.telefono !== null">{{p.telefono}}</span>
+                        <span *ngIf="p.telefono == null"> - </span>
+                    </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="fechaHora">
+                    <mat-header-cell [ngClass]="'fuente'" *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                    <mat-cell [ngClass]="'fuente'" *matCellDef="let p"> {{p.fechaProgramada | date :'dd/MM/yyyy HH:mm:ss'}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="estado">
+                    <mat-header-cell [ngClass]="'fuente'" *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                    <mat-cell *matCellDef="let p">
+                        <span class="badge-caducado"  matBadge="!" matBadgeColor="blue" *ngIf="p.estado == 'caducado' ">Caducado</span>
+                        <span class="badge-espera" *ngIf="p.estado == 'onHold' ">Pendiente</span>
+                        <span class="badge-pendiente" *ngIf="p.estado == 'available' "> Disponible</span>
+                        <span class="badge-terminado" *ngIf="p.estado == 'complete' ">Terminado</span>
+                    </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="opciones">
+                    <mat-header-cell [ngClass]="'fuente'" *matHeaderCellDef> Acciones </mat-header-cell>
+                    <mat-cell *matCellDef="let p">
+                        <span *ngIf="p.estado == 'onHold'">
+                            <button mat-icon-button matTooltip="Notificar Usuario" matTooltipClass="tooltip" class="share"
+                            (click)="compartirLink(p.id)">
+                             <mat-icon>share</mat-icon>
+                        </button>
+                            <button mat-icon-button matTooltip="Habilitar inspeccion del asegurado"  matTooltipClass="tooltip" class="habilitar"
+                                    (click)="actualizarEstado(p)">
+                                    <mat-icon>phonelink_ring</mat-icon>
+                                </button>&nbsp;
+                            <button mat-icon-button matTooltip="Reprogramar inspeccion" matTooltipClass="tooltip" class="reprogramar"
+                                    (click)="openDialog(p)">
+                                <mat-icon>watch_later</mat-icon>
+                            </button>
+                        </span>
+                        <div *ngIf="p.estado == 'available'">
+                        <button mat-icon-button matTooltip="Notificar Usuario" matTooltipClass="tooltip" class="share"
+                            (click)="compartirLink(p.id)">
+                             <mat-icon>share</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Iniciar Inspeccion" matTooltipClass="tooltip" class="iniciar"
+                            [routerLink]="['editar', p.placa]">
+                            <mat-icon>play_circle</mat-icon>
+                        </button>&nbsp;
+                        <button mat-icon-button matTooltip="Reprogramar inspeccion" matTooltipClass="tooltip" class="reprogramar"
+                                (click)="openDialog(p)">
+                            <mat-icon>watch_later</mat-icon>
+                         </button>
+                    </div>
+                    <span *ngIf="p.estado == 'complete'">
+                        <button mat-icon-button matTooltip="Ver inspeccion" matTooltipClass="tooltip" color="primary"
+                            [routerLink]="['ver', p.placa]">
+                            <mat-icon>visibility</mat-icon>
+                        </button>&nbsp;
+                        <button mat-icon-button matTooltip="Ver PDF" matTooltipClass="tooltip" class="pdf"
+                            (click)= "generarPdf(p)">
+                            <mat-icon>picture_as_pdf</mat-icon>
+                        </button>&nbsp;
+                    </span>
+                    <span *ngIf="p.estado == 'caducado'">
+                        <button mat-icon-button matTooltip="Reprogramar inspeccion" matTooltipClass="tooltip" color="primary"
+                        (click)="openDialog(p)">
+                    <mat-icon>watch_later</mat-icon>
+             </button>
+                    </span>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+            </mat-table>
+        </div>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" [length]= "cantidad" (page)= "paginaSiguiente($event)">
+        </mat-paginator>
+
+    </div>
+</div>

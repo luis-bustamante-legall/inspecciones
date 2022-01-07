@@ -1,0 +1,29 @@
+<div class="fondo">
+    <div class="card login-panel ui-fluid" style="background-color: #ffffff; opacity: 0.9; border-radius: 14px;">
+        <div class="ui-g" style="background-color: #ffffff; opacity: 1; ">
+            <div>
+                <img src="../../../assets/logo.jpeg" height="110px" width="120px" >
+            </div>
+            <div>
+                <mat-form-field class="withInputs">
+                    <span matPrefix><mat-icon matSuffix>account_circle</mat-icon> &nbsp;</span>
+                    <input style="font-size: 15px;" matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="false">
+                </mat-form-field>
+            </div>
+            <br>
+            <div>
+                <mat-form-field class="withInputs">
+                    <span matPrefix><mat-icon matSuffix>vpn_key</mat-icon> &nbsp;</span>
+                    <input style="font-size: 15px;" matInput type="password" placeholder="Contraseña" [(ngModel)]="contrasenia" autocomplete="off">
+                </mat-form-field>
+                
+            </div>
+            <br>
+            <br>
+            <div class="withInputsButton">
+                <button class="withInputs" mat-flat-button color="primary" (click)="iniciarSesion()"> 
+                    <mat-icon>account_circle</mat-icon> &nbsp; Iniciar Sesion</button>
+            </div>
+        </div>
+    </div>
+</div>

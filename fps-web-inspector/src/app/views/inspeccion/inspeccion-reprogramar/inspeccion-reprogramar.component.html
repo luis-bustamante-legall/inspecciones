@@ -1,0 +1,31 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-around">
+    <p class="titulo">Reprogramar Inspeccion</p>
+    <div fxFlex.xs="96%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.lg="100%" fxFlex.xl="100%">
+        <mat-form-field appearance="fill" class="withInputs">
+            <input matInput readonly="true"(dateChange)="validarProgramacionFecha()" [matDatepicker]="picker" placeholder="Seleccione la fecha" [min]="fechaActual"
+                [(ngModel)]="fechaCalendario">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [startAt]="fechaActual" #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div fxFlex.xs="96%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.lg="100%" fxFlex.xl="100%">
+        <mat-form-field appearance="fill" class="withInputs">
+            <mat-label>Ingrese la hora (HH:MM)</mat-label>
+            <input matInput (keyup)="setTime($event)" (blur)="validarProgramacionFecha()" (keyup)="validarProgramacionFecha()" [textMask]="getMask()" class="col-md-5 end"
+                placeholder="hh:mm" [(ngModel)]="hora" name="end">
+        </mat-form-field>
+    </div>
+</div>
+<br>
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+    <div fxFlex.xs="30%" fxFlex.sm="30%" fxFlex.md="30%" fxFlex.lg="30%" fxFlex.xl="30%">
+        <button mat-raised-button [disabled]="estado" color="primary" (click)="reprogramar()">Aceptar</button>
+    </div>
+    <div fxFlex.xs="30%" fxFlex.sm="30%" fxFlex.md="30%" fxFlex.lg="30%" fxFlex.xl="30%">
+        <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>

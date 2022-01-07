@@ -1,0 +1,9 @@
+<div class="cont-icono">
+    <mat-icon class="icono">info</mat-icon> &nbsp;
+</div>
+<div class="cont-body">
+    {{data.message}}
+</div>
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button class="boton-aceptar" color="accent" mat-raised-button (click)="snackBarRef.dismiss()">{{data.buttonText}}</button>
+</div>

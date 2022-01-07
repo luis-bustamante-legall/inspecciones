@@ -1,0 +1,82 @@
+<div class="container">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="90%" fxFlex.lg="90%" fxFlex.xl="90%">
+            <mat-card style="padding-top:0;padding-left:0;padding-right:0; border-radius: 8px;" class="example-card">
+                <mat-card-subtitle class="titulo" style="border-radius: 6px;">
+                    <span>
+                        <mat-icon>add_alert</mat-icon>
+                    </span>
+                    Notificar un nuevo usuario
+                </mat-card-subtitle>
+                <mat-card-content>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+                        <div fxFlex.xs="95%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex.lg="50%" fxFlex.xl="50%">
+                            <mat-form-field class="withInputs">
+                                <input matInput (keyup)="filtrar($event.target.value)"
+                                    placeholder="Ingrese asegurado, placa, email, telefono ...." [(ngModel)]="input">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="center center">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<div fxFlex.xs="95%" fxFlex.sm="45%" fxFlex.md="20%" fxFlex.lg="15%"
+                            fxFlex.xl="20%">
+                            <button mat-raised-button color="warn" (click)="limpiar()">Limpiar</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <br>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex.xs="99%" fxFlex.sm="90%" fxFlex.md="90%" fxFlex.lg="90%" fxFlex.xl="90%">
+            <div class="fondo">
+                <mat-card style="padding-top:0;padding-left:0;padding-right:0" class="example-card">
+                    <mat-table [dataSource]="dataSource" matSort #sort>
+                        <ng-container matColumnDef="asegurado">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-arrow"> Asegurado
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let p"> {{p.insured_name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-arrow"> Email
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let p"> {{p.contact_email}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="telefono">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-arrow"> Telefono
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let p"> {{p.contact_phone}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="placa">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-arrow"> Placa
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let p"> {{p.plate}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="opciones">
+                            <mat-header-cell *matHeaderCellDef class="titleTable"> Acciones </mat-header-cell>
+                            <mat-cell *matCellDef="let p">
+                                <button mat-icon-button matTooltip="Generar Link" matTooltipClass="tooltip"
+                                    color="primary" (click)="openDialog(p.id)">
+                                    <mat-icon>link</mat-icon>
+                                </button>&nbsp;
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSize]="20" [pageSizeOptions]="[20, 50, 80, 100]">
+                    </mat-paginator>
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+</div>

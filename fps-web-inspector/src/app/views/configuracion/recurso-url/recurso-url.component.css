@@ -1,0 +1,62 @@
+@font-face{
+    font-family: 'OpenSans';
+    src: url(../../../../assets/fonts/OpenSans-Regular.ttf);
+}
+
+.container{
+    margin: 18px 18px 18px 18px;
+    font-family: OpenSans;
+}
+
+.titulo {
+    font-family: OpenSans;
+    background: #F0F3F4; 
+    padding:10px 20px 10px; 
+    color: #3162A0; 
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.mat-header-cell {
+    /* background-color: #3162A0; */
+    background: #0B75C8;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+
+::ng-deep .hide-arrow .mat-sort-header-arrow {
+    color: #ffffff;
+}
+
+.withInputs {
+    width: 100%;
+}
+
+.cabecero {
+    background-color: #3162A0;
+    color: #ffffff;
+    margin-bottom: 1px;
+}
+
+.boton{
+    background-color: #4CAF50;
+    color: #ffffff;
+    margin: 6px 20px 6px;
+    min-height: 23px !important;
+    min-width: 9px !important;
+    font-size: 10px !important;
+    line-height: 0px; 
+}
+
+.boton-filtro{
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.boton-limpiar {
+    background-color: #E74040 !important;
+    color: #ffffff !important;
+    font-weight: 400;
+}
